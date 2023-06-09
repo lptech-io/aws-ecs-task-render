@@ -10,7 +10,7 @@ from profile_checker import ProfileChecker
 
 item_to_be_remove_from_task_definition = ['taskDefinitionArn', 'revision', 'status', 'requiresAttributes', 'compatibilities', 'registeredAt', 'registeredBy']
 image_list = []
-logging.basicConfig(format='%(levelname)s - %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(levelname)s - %(message)s', level=logging.WARN)
 parser = argparse.ArgumentParser(description='Render ECS task definition for update it')
 parser.add_argument('-p', metavar='profile', help='Profile to use for task definition retrieve', default=None)
 parser.add_argument('-f', metavar='family-name', help='Task definition family name')
