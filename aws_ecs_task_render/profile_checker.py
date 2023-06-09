@@ -55,11 +55,12 @@ class ProfileChecker:
 
     def read_profiles_files(self):
         """Class that manage all the stuff related to the profiles"""
-        if os_environ["HOME"] is None:
+        try:
+          os_environ["HOME"]
+          home_path = os_environ["HOME"]
+        except:
           logging.warning(f'Ops, seems you do not have HOME variable defined on your machine, i\'ll try to use "{str(Path.home())}"')
           home_path = str(Path.home())
-        else:
-          home_path = os_environ["HOME"]
         try:
             self.credential_file.read(f'{home_path}/.aws/credentials')
             if os_path.exists(f'{home_path}/.aws/config'):
