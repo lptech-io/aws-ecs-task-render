@@ -2,6 +2,7 @@
 import configparser
 import logging
 from os import environ as os_environ, path as os_path
+from pathlib import Path
 from sys import exit as sys_exit
 from inquirer import List as inquirer_list, prompt as inquirer_prompt
 
@@ -54,10 +55,15 @@ class ProfileChecker:
 
     def read_profiles_files(self):
         """Class that manage all the stuff related to the profiles"""
+        if os_environ["HOME"] is None:
+          logging.warning(f'Ops, seems you do not have HOME variable defined on your machine, i\'ll try to use "{str(Path.home())}"')
+          home_path = str(Path.home())
+        else:
+          home_path = os_environ["HOME"]
         try:
-            self.credential_file.read(f'{os_environ["HOME"]}/.aws/credentials')
-            if os_path.exists(f'{os_environ["HOME"]}/.aws/config'):
-                self.config_file.read(f'{os_environ["HOME"]}/.aws/config')
+            self.credential_file.read(f'{home_path}/.aws/credentials')
+            if os_path.exists(f'{home_path}/.aws/config'):
+                self.config_file.read(f'{home_path}/.aws/config')
         except configparser.Error:
-            logging.error('%s/.aws/credentials', os_environ['HOME'])
+            logging.error('%s/.aws/credentials', home_path)
             sys_exit(1)
