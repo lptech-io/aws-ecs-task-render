@@ -59,7 +59,7 @@ class ProfileChecker:
           os_environ["HOME"]
           home_path = os_environ["HOME"]
         except:
-          logging.warning(f'Ops, seems you do not have HOME variable defined on your machine, i\'ll try to use "{str(Path.home())}"')
+          logging.info(f'Seems you do not have HOME variable defined on your machine, i\'ll try to use "{str(Path.home())}"')
           home_path = str(Path.home())
         try:
             self.credential_file.read(f'{home_path}/.aws/credentials')
