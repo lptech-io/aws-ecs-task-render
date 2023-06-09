@@ -3,7 +3,6 @@ name: aws-ecs-task-render
 on:
   push:
     branches: ['main']
-    paths: ['**.py']
 
 
 jobs:
