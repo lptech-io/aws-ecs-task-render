@@ -13,6 +13,7 @@ desktop.ini
 !.editorconfig
 !.gitignore
 !.pylintrc
+!.github
 
 # VSCode
 .vscode
